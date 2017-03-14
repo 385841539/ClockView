@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -16,10 +18,11 @@ import android.view.View;
 public class ClockView extends View {
 
     private String name = "OMEGA";
+    private String namepai = "Ω";
+    private String love = "I'll love you";
+    private String love2 = "forever";
     private Paint panPaint;
     private TextPaint textPaint;
-
-
 
 
     private int viewWidth;
@@ -30,6 +33,13 @@ public class ClockView extends View {
     private int second = 55;
 
     private int textsize = 0;
+    private Rect rect;
+    private float textwidth;
+    private int textheight;
+    private int paiwidth;
+    private int paiheight;
+    private int love1width;
+    private int love2width;
 
     public ClockView(Context context) {
         this(context, null);
@@ -50,6 +60,8 @@ public class ClockView extends View {
         textPaint.setColor(Color.WHITE);
         textPaint.setTextSize(textsize);
 
+        rect = new Rect();
+
     }
 
     @Override
@@ -59,6 +71,7 @@ public class ClockView extends View {
         viewHeight = MeasureSpec.getSize(heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
 
         switch (widthMode) {
             case MeasureSpec.EXACTLY:
@@ -73,7 +86,7 @@ public class ClockView extends View {
                 setMeasuredDimension(viewWidth, viewHeight);
                 break;
         }
-        textsize = getWidth() / 32;
+        textsize = viewWidth / 32;
         initpaint();
     }
 
@@ -91,6 +104,46 @@ public class ClockView extends View {
         panPaint.setStrokeWidth((float) (textsize * 1.4));
         panPaint.setStyle(Paint.Style.STROKE);//属性空心
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, (float) (getWidth() / 2 - textsize * 0.8), panPaint);
+
+
+        //画出omega文字
+        textPaint.setTextSize(textsize * 3);
+        textPaint.getTextBounds(namepai, 0, 1, rect);
+        paiwidth = rect.width();
+        paiheight = rect.height();
+        textPaint.getTextBounds(name, 0, name.length(), rect);
+        textwidth = rect.width();
+        textheight = rect.height();
+
+        Log.e("textwidth", "textwidth: " + textwidth + ",viewWidth:" + viewWidth);
+//        canvas.drawText(namepai, viewWidth / 2 - paiwidth / 2, (float) (textsize * 8), textPaint);
+// 感觉画上去不好看
+        canvas.drawText(name, viewWidth / 2 - textwidth / 2, (float) (textsize * 11), textPaint);
+
+//写上爱你一万年
+        textPaint.setTextSize((float) (textsize * 1.1));
+        textPaint.getTextBounds(love, 0, love.length(), rect);
+        love1width = rect.width();
+
+        textPaint.getTextBounds(love2, 0, love2.length(), rect);
+        love2width = rect.width();
+        Typeface font = Typeface.create(Typeface.SANS_SERIF, Typeface.ITALIC);
+
+        textPaint.setTypeface(font);
+        canvas.drawText(love, viewWidth / 2 - love1width / 2, viewHeight / 2 + textsize * 5, textPaint);
+        canvas.drawText(love2, viewWidth / 2 - love2width / 2, viewHeight / 2 + textsize * 6
+                + rect.height() / 2, textPaint);
+
+        //画日期
+
+        rect.set(viewWidth - textsize * 10, viewWidth / 2 - textsize * 2, viewWidth - textsize * 6, viewWidth / 2 + textsize * 2);
+        panPaint.setColor(Color.BLACK);
+        canvas.drawRect(rect, panPaint);
+
+        panPaint.setStrokeWidth(viewWidth / 2);
+        textPaint.setTypeface(Typeface.DEFAULT);
+        textPaint.setTextSize(textsize);
+
 
         //画刻度
         panPaint.setColor(Color.WHITE);
