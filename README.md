@@ -4,20 +4,32 @@
 
 
 ## How To Use It/如何使用？
-</br>
-1	
-</br>
-  	maven { url 'https://jitpack.io' }
-</br>	
-2
- </br>
-       
-       compile 'com.github.385841539:ClockView:1201af8a36'
- </br>    
-3
+##1
+
+```
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+```
+
+
+##2
+```
+dependencies {
+	        compile 'com.github.385841539:ClockView:1201af8a36'
+	}
+
+```
+
+
+##3
+```
+  <com.example.clockview.ClockView
+     android:layout_width="match_parent"
+        android:layout_height="match_parent" />
  
->>   <com.example.clockview.ClockView
->>>        android:layout_width="match_parent"
- >>>       android:layout_height="match_parent" />
- 
- 
+ ```
