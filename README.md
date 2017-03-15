@@ -5,12 +5,12 @@
 </br>
 
 allprojects {</br>
-	>>	 repositories {</br>
-		>>>	...</br>
-		>>>	maven { url 'https://jitpack.io' }</br>
-	>>	}</br>
+>>		 repositories {</br>
+>>>			...</br>
+>>>			maven { url 'https://jitpack.io' }</br>
+>>		}</br>
 >	}</br>
   
   dependencies {</br>
-	  >>>      compile 'com.github.385841539:ClockView:1201af8a36'</br>
+>>>	       compile 'com.github.385841539:ClockView:1201af8a36'</br>
 >>	}
