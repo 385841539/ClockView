@@ -6,10 +6,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import java.util.Calendar;
 
 /**
  * Created by ruedy on 2017/3/14.
@@ -40,6 +44,26 @@ public class ClockView extends View {
     private int paiheight;
     private int love1width;
     private int love2width;
+    private int data1;
+
+    private Handler handler = new Handler() {
+
+
+        @Override
+        public void handleMessage(Message msg) {
+            Calendar calendar = Calendar.getInstance();
+
+            hour = calendar.get(Calendar.HOUR);
+            minute = calendar.get(Calendar.MINUTE);
+            second = calendar.get(Calendar.SECOND);
+            data1 = calendar.get(Calendar.DAY_OF_MONTH);
+
+            invalidate();
+
+            sendEmptyMessageDelayed(1, 1000);
+
+        }
+    };
 
     public ClockView(Context context) {
         this(context, null);
@@ -51,6 +75,8 @@ public class ClockView extends View {
 
     public ClockView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        handler.sendEmptyMessage(1);
 
     }
 
@@ -88,6 +114,7 @@ public class ClockView extends View {
         }
         textsize = viewWidth / 32;
         initpaint();
+
     }
 
     @Override
@@ -136,11 +163,13 @@ public class ClockView extends View {
 
         //画日期
 
-        rect.set(viewWidth - textsize * 10, viewWidth / 2 - textsize * 2, viewWidth - textsize * 6, viewWidth / 2 + textsize * 2);
+        rect.set(viewWidth - textsize * 8, viewWidth / 2 - textsize, viewWidth - textsize * 5, viewWidth / 2 + textsize);
         panPaint.setColor(Color.BLACK);
+        panPaint.setStyle(Paint.Style.FILL);
         canvas.drawRect(rect, panPaint);
-
-        panPaint.setStrokeWidth(viewWidth / 2);
+        String s = String.valueOf(data1);
+        textPaint.getTextBounds(s, 0, s.length(), rect);
+        canvas.drawText(s, (float) (viewWidth - textsize * 6.5 - (rect.width() / 2)), viewWidth / 2 + rect.height() / 2, textPaint);
         textPaint.setTypeface(Typeface.DEFAULT);
         textPaint.setTextSize(textsize);
 
