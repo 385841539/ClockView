@@ -33,3 +33,5 @@ dependencies {
         android:layout_height="match_parent" />
  
  ```
+ 
+ 具体实现思路请看博客 http://blog.csdn.net/iamdingruihaha/article/details/62238382 期待与您沟通，大家共同进步）。
