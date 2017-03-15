@@ -6,7 +6,6 @@
 
 allprojects {</br>
 >>		 repositories {</br>
->>>			...</br>
 >>>			maven { url 'https://jitpack.io' }</br>
 >>		}</br>
 >	}</br>
