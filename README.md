@@ -4,7 +4,7 @@
 
 
 ## How To Use It/如何使用？
-## 1。
+## 1.
 ```
 	allprojects {
 		repositories {
@@ -16,7 +16,7 @@
 ```
 
 
-## 2。
+## 2.
 ```
 dependencies {
 	        compile 'com.github.385841539:ClockView:1201af8a36'
