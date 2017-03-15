@@ -1,3 +1,4 @@
+
 # ClockView
 
 
@@ -9,7 +10,8 @@ allprojects {
 >>		 repositories {
 </br>
 >>>			maven { url 'https://jitpack.io' 
-}</br>
+}
+</br>
 >>		}
 </br>
 >	}
