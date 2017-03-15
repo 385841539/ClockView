@@ -209,12 +209,15 @@ public class ClockView extends View {
                 canvas.restore();//重置画布状态
 
 
+
+
+
             }
         }
 
 
         //画时针
-        panPaint.setStrokeWidth((float) (textsize * 0.25));
+        panPaint.setStrokeWidth((float) (textsize * 0.3));
         canvas.save();
         canvas.rotate(360 / 12 * hour + 90 + minute * 0.5f, viewWidth / 2, viewWidth / 2);
         canvas.drawLine(viewHeight / 2 - viewWidth / 5, viewWidth / 2,
@@ -222,7 +225,7 @@ public class ClockView extends View {
         canvas.restore();
 
         //画分针
-        panPaint.setStrokeWidth(3);
+        panPaint.setStrokeWidth((float) (textsize*0.2));
         canvas.save();
         canvas.rotate(360 / 60 * minute + 90, viewWidth / 2, viewWidth / 2);
         canvas.drawLine(viewHeight / 2 - viewWidth / 4, viewWidth / 2,
@@ -230,12 +233,16 @@ public class ClockView extends View {
         canvas.restore();
 
         //画秒针
-        panPaint.setStrokeWidth(3);
+        panPaint.setStrokeWidth((float) (textsize*0.1));
         canvas.save();
         canvas.rotate(360 / 60 * second + 90, viewWidth / 2, viewWidth / 2);
         canvas.drawLine(viewHeight / 2 - viewWidth / 3, viewWidth / 2,
                 viewWidth / 2, viewWidth / 2, panPaint);
         canvas.restore();
+
+        //画中心
+        panPaint.setStyle(Paint.Style.FILL);//属性空心
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, (float) (textsize * 0.3), panPaint);
 
     }
 
