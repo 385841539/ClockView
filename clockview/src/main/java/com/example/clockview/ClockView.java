@@ -169,7 +169,7 @@ public class ClockView extends View {
         canvas.drawRect(rect, panPaint);
         String s = String.valueOf(data1);
         textPaint.getTextBounds(s, 0, s.length(), rect);
-        canvas.drawText(s, (float) (viewWidth - textsize * 6.5 - (rect.width() / 2)), viewWidth / 2 + rect.height() / 2, textPaint);
+        canvas.drawText(s, (float) (viewWidth - textsize * 6.5 - (rect.width() / 1.9)), viewWidth / 2 + rect.height() / 2, textPaint);
         textPaint.setTypeface(Typeface.DEFAULT);
         textPaint.setTextSize(textsize);
 
