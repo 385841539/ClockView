@@ -5,27 +5,10 @@
 
 ## How To Use It/如何使用？
 ## 1.
-```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-
-```
-
-
+ 
+直接把MyClockView这个类放到项目里面
+ 
 ## 2.
-```
-dependencies {
-	        compile 'com.github.385841539:ClockView:1201af8a36'
-	}
-
-```
-
-
-## 3.
 ```
   <com.example.clockview.ClockView
      android:layout_width="match_parent"
